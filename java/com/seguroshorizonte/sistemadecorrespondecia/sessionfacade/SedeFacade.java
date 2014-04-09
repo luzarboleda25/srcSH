@@ -58,6 +58,13 @@ public class SedeFacade extends AbstractFacade<Sede> {
         Registros = Consulta.getResultList();
         return Registros;
     }
+    
+     public List<Sede> listarSedesParaEnvio(BigDecimal idSede) {
+        List<Sede> Registros;
+        Query Consulta = em.createNamedQuery("Sede.findparaEnvio").setParameter("idsed", idSede);
+        Registros = Consulta.getResultList();
+        return Registros;
+    }
 
     public String listarNombresXId(BigDecimal id) {
         Sede Registro;

@@ -2009,11 +2009,11 @@ public class CorrespondenciaWS {
      * @return
      */
     @WebMethod(operationName = "consultarBuzonParaEnviar")
-    public List<Buzon> consultarBuzonParaEnviar(@WebParam(name = "nombre") String nombre, @WebParam(name = "apellido") String apellido, @WebParam(name = "area") String area, @WebParam(name = "miBuzon") Buzon miBuzon) {
+    public List<Buzon> consultarBuzonParaEnviar(@WebParam(name = "nombre") String nombre, @WebParam(name = "apellido") String apellido, @WebParam(name = "area") String area, @WebParam(name = "miBuzon") Buzon miBuzon, @WebParam(name = "sede") String sede) {
 
         List<Buzon> Resultado;
         try {
-            Resultado = ejbBuzon.buscarBuzonParaEnviar(nombre, apellido, area, miBuzon);
+            Resultado = ejbBuzon.buscarBuzonParaEnviar(nombre, apellido, area, miBuzon,sede);
         } catch (Exception e) {
             return null;
         }
@@ -2765,6 +2765,18 @@ public class CorrespondenciaWS {
             Resultado = 1;
         } catch (Exception e) {
             Resultado = 0;
+        }
+        return Resultado;
+    }
+
+    @WebMethod(operationName = "listarSedesParaEnvio")
+    public List<Sede> listarSedesParaEnvio(@WebParam(name = "idSede") String idSede) {
+
+        List<Sede> Resultado = null;
+        try {
+            Resultado = ejbSede.listarSedesParaEnvio(new BigDecimal(idSede));
+        } catch (Exception e) {
+            return null;
         }
         return Resultado;
     }
